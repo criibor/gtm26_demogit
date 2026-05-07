@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>hydraandtool</title>
+	<meta charset="utf-8">
+	<!-- Compiled w/ P5LIVE, http://github.com/ffd8/p5live -->
+	<style type="text/css">
+		body{
+			margin:0;
+			overflow:hidden;
+		}
+		canvas{
+			position:fixed;
+			top:0;
+			left:0;
+			z-index:-1;
+			width:100vw;
+			height:100vh;
+			margin:0;
+		}
+	</style>
+	<script type="text/javascript">
+		// eco-mode = only render if window focused
+		window.onblur = function () {
+			noLoop();
+		};
+		window.onfocus = function () {
+			loop();
+		};
+	</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1/lib/p5.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/processing/p5.js-sound/lib/p5.sound.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/hydra-synth"></script>
+<script type="text/javascript" src="includes/libs/hydra-synth.js"></script>
+
+
+</head>
+<body style="background: rgb(0, 0, 0);">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/ffd8/hy5@main/hy5.js"></script>
+	<script type="text/javascript" src="includes/libs/hy5.js"></script>
+<script type="text/javascript">
+//hydraandtool
+
+/* CUSTOM FUNCTIONS FOR P5LIVE */
+// keep fullscreen if window resized
+function windowResized() {
+	resizeCanvas(windowWidth, windowHeight);
+}
+
+// custom ease function
+function ease(iVal, oVal, eVal){
+	return oVal += (iVal - oVal) * eVal;
+}
+
+// processing compatibility
+function println(msg){
+	print(msg);
+}
+
+
+/*
+	_HY5_p5_hydra // cc teddavis.org 2024
+	pass p5 into hydra
+	docs: https://github.com/ffd8/hy5
+*/
+
+let libs = ['https://unpkg.com/hydra-synth', 'includes/libs/hydra-synth.js', 'https://cdn.jsdelivr.net/gh/ffd8/hy5@main/hy5.js', 'includes/libs/hy5.js']
+
+// sandbox - start
+H.pixelDensity(2) // 2x = retina, set <= 1 if laggy
+
+osc(5, 0.9, 0.001)
+	.color(0.363, 0.231)
+	.kaleid([1.428, 4, 5, 7, 1.969, 3.67, 10].fast(0.1))
+	.rotate(0.003, () => Math.sin(time) * -0.021)
+	.kaleid([1.428, 4, 5, 7, 1.969, 3.67, 10].fast(0.1))
+	.modulate(o0, 0.3)
+	.scale(1.028)
+	.out(o0);
+
+s0.initP5() // send p5 to hydra
+P5.toggle(0) // optionally hide p5
+
+src(s0)
+	//.modulate(noize())
+	.out()
+// sandbox - end
+
+
+
+
+	function setup() {
+		createCanvas(windowWidth, windowHeight)
+	}
+
+
+function draw() {
+	function draw() {
+		// clear()
+		//circle(mouseX, mouseY, 100)
+	}
+
+
+}
+</script>
+
+</body>
+</html>
