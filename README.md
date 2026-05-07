@@ -1,3 +1,6 @@
 # gtm26_demogit
-hello
-demo
+
+demo project
+
+## View Demo 
+[Launch Starry Sky](https://criibor.github.io/gtm26_demogit/)
